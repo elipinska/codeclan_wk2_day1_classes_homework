@@ -5,28 +5,19 @@ class Library
     @books = input_books
   end
 
-  def book_lookup(title)
-    book_found = []
-    for book in @books
-      book_found.push(book) if book[:title] == title
-    end
-    book_found == [] ? "Book not found" : book_found
-  end
 
   def book_lookup(title)
-    book_found = []
     for book in @books
-      book_found.push(book) if book[:title] == title
+      return book if book[:title] == title
     end
-    book_found == [] ? "Book not found" : book_found
+    "Book not found"
   end
 
   def get_rental_details(title)
-    details_found = []
     for book in @books
-      details_found.push(book[:rental_details]) if book[:title] == title
+      return book[:rental_details] if book[:title] == title
     end
-    details_found == [] ? "Book not found" : details_found
+    "Book not found"
   end
 
   def add_to_library(title)
@@ -46,5 +37,7 @@ class Library
         book[:rental_details][:date] = date
       end
     end
+    "Book not found"
   end
+
 end
